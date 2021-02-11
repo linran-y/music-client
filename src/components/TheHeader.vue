@@ -11,7 +11,14 @@
         {{item.name}}
       </li>
       <li>
-
+        <div class="header-search">
+          <input type="text" placeholder="搜索音乐" @keyup.enter="goSearch()" v-model="keywords">
+          <div class="search-btn" @click="goSearch()">
+            <svg class="icon">
+              <use xlink:href = "#icon-sousuo"></use>
+            </svg>
+          </div>
+        </div>
       </li>
     </ul>
   </div>
@@ -25,6 +32,7 @@
     data(){
       return{
         navMsg:[],//导航栏
+        keywords:'',//搜索关键字
       }
     },
     created(){
@@ -41,6 +49,9 @@
         this.$router.push({path: path,});
         this.$store.commit('setActiveName',name);
       },
+      goSearch(){
+        this.$router.push({path:'/search',query:{keywords: this.keywords}})
+      }
     }
   }
 </script>
