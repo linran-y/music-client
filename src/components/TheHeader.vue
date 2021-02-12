@@ -11,13 +11,9 @@
         {{item.name}}
       </li>
       <li>
-        <div class="header-search">
-          <input type="text" placeholder="搜索音乐" @keyup.enter="goSearch()" v-model="keywords">
-          <div class="search-btn" @click="goSearch()">
-            <svg class="icon">
-              <use xlink:href = "#icon-sousuo"></use>
-            </svg>
-          </div>
+        <div style="font-size:0">
+          <el-input type="text" placeholder="搜索音乐" @keyup.enter.native="goSearch()" v-model="keywords"></el-input>
+          <el-button type="primary" icon="el-icon-search" @click="goSearch()">搜索</el-button>
         </div>
       </li>
     </ul>
@@ -47,10 +43,12 @@
       },
       goPage(path,name){
         this.$router.push({path: path,});
+        this.keywords='';
         this.$store.commit('setActiveName',name);
       },
       goSearch(){
         this.$router.push({path:'/search',query:{keywords: this.keywords}})
+        this.$store.commit('setActiveName','');//消除高亮
       }
     }
   }
