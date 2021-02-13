@@ -12,15 +12,16 @@ export const mixin = {
     attachImageUrl (srcUrl) {
       return srcUrl? this.$store.state.configure.HOST+srcUrl : '../assets/img/user.jpg';
     },
-    getSong(){//全局歌曲模糊搜索，将搜索结果放入缓存里面
+    //全局歌曲模糊搜索，将搜索结果放入缓存里面
+    getSong(){
       if(!this.$route.query.keywords) {
-        this.$store.commit('setlistOfSongs',[]);
+        this.$store.commit('setListOfSongs',[]);
         this.notify('您输入的内容为空',"warning");
       }
       else{
         querySongByName(this.$route.query.keywords).then(res=>{
           if(!res.data.length) {
-            this.$store.commit('setlistOfSongs',[]);
+            this.$store.commit('setListOfSongs',[]);
             this.notify('暂无搜索结果',"warning");
           }
           else {
@@ -32,10 +33,23 @@ export const mixin = {
               })
             })
             //console.log(res);
-            this.$store.commit('setlistOfSongs',res.data);
+            this.$store.commit('setListOfSongs',res.data);
           }
         }).catch(err=>{console.log(err);})
       }
+
+    },
+    //播放音乐
+    toplay(id,url,pic,index,title,singername,lyric)
+    {
+      //console.log(id,url,pic,index,title,singername,lyric);
+      this.$store.commit('setId',id);
+      this.$store.commit('setUrl',this.$store.state.configure.HOST+url);
+      this.$store.commit('setPicUrl',this.$store.state.configure.HOST+pic);
+      this.$store.commit('setListIndex',index);
+      this.$store.commit('setTitle',title);
+      this.$store.commit('setArtist',singername);
+      this.$store.commit('setLyric',lyric);
 
     }
   }

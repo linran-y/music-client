@@ -12,7 +12,7 @@
             <span class="item-intro">专辑</span>
           </div>
         </li>
-        <li v-for="(item,index) in songList" :key="index">
+        <li v-for="(item,index) in songList" :key="index" @click="toplay(item.id,item.url,item.pic,index,item.name,item.singername,item.lyric)">
           <div class="song-item" >
             <span class="item-index">
               {{index + 1}}
@@ -28,9 +28,11 @@
 </template>
 
 <script>
+  import {mixin} from '../mixins';
   export default {
     name: 'AlbumContent',
     props:['songList'],
+    mixins:[mixin],
     data(){
       return {
         SongList:[],

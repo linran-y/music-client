@@ -1,8 +1,8 @@
 <template>
     <div class="search">
       <nav class="searchList-nav">
-        <span :class="{isActive:toggle==='Songs'}" @click="handleChangeView('Songs')">歌单</span>
-        <span :class="{isActive:toggle==='Songlists'}" @click="handleChangeView('Songlists')">歌曲</span>
+        <span :class="{isActive:toggle==='Songs'}" @click="handleChangeView('Songs')">歌曲</span>
+        <span :class="{isActive:toggle==='Songlists'}" @click="handleChangeView('Songlists')">歌单</span>
       </nav>
       <component :is="currentView"></component>
     </div>
