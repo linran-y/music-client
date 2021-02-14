@@ -46,8 +46,10 @@
         let player = this.$refs.player;
         this.$store.commit('setDuration',player.duration);
         //开始播放
-        player.play();
         this.$store.commit('setIsPlay',true);
+        this.$store.commit('setPlayButtonUrl','#icon-zanting');
+        player.play();
+
       },
       //播放完成之后触发
       ended(){
@@ -74,6 +76,6 @@
 
 <style>
   .song-audio {
-    display: inline;
+    display: none;
   }
 </style>

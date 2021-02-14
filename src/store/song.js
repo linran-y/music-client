@@ -14,7 +14,7 @@ const song = {
     autoNext: true,             //用于自动触发播放下一首
     lyric: [],                  //未处理的歌词数据
     tempList: {},               //单个歌单信息
-    listIndex: null,            //当前歌曲在歌单中的位置
+    listIndex:null,            //当前歌曲在歌单中的位置
     volume: 50                  //音量
   },
   getters: {
@@ -134,6 +134,7 @@ const song = {
   },
   mutations: {
     setListOfSongs: (state,listOfSongs) => {
+      //console.log(listOfSongs);
       state.listOfSongs = listOfSongs;
       window.sessionStorage.setItem('listOfSongs',JSON.stringify(listOfSongs));
     },
@@ -182,6 +183,7 @@ const song = {
       window.sessionStorage.setItem('autoNext',JSON.stringify(autoNext));
     },
     setLyric: (state,lyric) => {
+      //console.log(lyric);
       state.lyric = lyric;
       window.sessionStorage.setItem('lyric',JSON.stringify(lyric));
     },

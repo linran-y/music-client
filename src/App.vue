@@ -4,6 +4,7 @@
     <ScrollTop></ScrollTop>
     <router-view class="music-content"/>
     <SongAudio></SongAudio>
+    <TheAside></TheAside>
     <TheFooter></TheFooter>
     <PlayBar></PlayBar>
   </div>
@@ -15,6 +16,7 @@
   import TheFooter from './components/TheFooter'
   import SongAudio from './components/SongAudio'
   import PlayBar from './components/PlayBar'
+  import TheAside from './components/TheAside'
 export default {
   name: 'App',
   components: {
@@ -23,6 +25,7 @@ export default {
     TheHeader,
     ScrollTop,
     TheFooter,
+    TheAside,
   }
 }
 </script>
