@@ -1,5 +1,10 @@
 <template>
-  <div class="play-bar">
+  <div class="play-bar" :class="{show:!toggle}">
+    <div @click="toggle=!toggle" class="item-up" :class="{turn: !toggle}">
+      <svg class="icon">
+        <use xlink:href="#icon-jiantou-xia-cuxiantiao"></use>
+      </svg>
+    </div>
     <div class="kongjian">
       <!-- 上一首 -->
       <div class="item" @click="prev">
@@ -60,7 +65,7 @@
           </svg>
         </div>
         <!-- 下载 -->
-        <div class="item">
+        <div class="item" @click="download">
           <svg class="icon">
             <use xlink:href="#icon-xiazai"></use>
           </svg>
@@ -78,6 +83,7 @@
 </template>
 <script>
   import {mapGetters} from 'vuex';
+  import {download} from '../api'
   export default {
     name: 'play-bar',
     data(){
@@ -89,6 +95,7 @@
         mouseStartX:    0,      //拖拽开始位置
         tag: false,             //拖拽开始结束的标志，当开始拖拽，它的值才会变成true
         volume: 50,             //音量，默认一半
+        toggle: true            //显示隐藏播放器页面
       }
     },
     computed: {
@@ -307,6 +314,28 @@
         });
         return result;
       },
+      //下载音乐
+      download() {
+        download(this.url)
+          .then(res=>{
+            let content = res.data;
+            let eleLink = document.createElement('a');
+            eleLink.download = `${this.artist}-${this.title}.mp3`;
+            eleLink.style.display = 'none';
+            //把字符内容转换成blob地址
+            let blob = new Blob([content]);
+            eleLink.href = URL.createObjectURL(blob);
+            //把链接地址加到document里
+            document.body.appendChild(eleLink);
+            //触发点击
+            eleLink.click();
+            //然后移除掉这个新加的控件
+            document.body.removeChild(eleLink);
+          })
+          .catch(err =>{
+            console.log(err);
+          })
+      }
     }
 
 

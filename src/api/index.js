@@ -1,5 +1,5 @@
 import {get,post} from "./http";
-
+import Axios from "axios";
 
 
 //========================歌手相关=======================
@@ -65,3 +65,11 @@ export const DeleteConsumer = (params) => get(`consumer/delete?id=${params}`);
 export const queryallConsumer = () => get(`consumer/findall`);
 //根据用户名来模糊
 export const queryConsumerByName = (params) => get(`consumer/findbyusernamelike?username=${params}`);
+
+
+//下载音乐
+export const download = (url)  => Axios({
+  method: 'get',
+  url: url,
+  responseType: 'blob'
+});
