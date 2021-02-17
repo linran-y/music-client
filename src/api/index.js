@@ -65,8 +65,8 @@ export const DeleteConsumer = (params) => get(`consumer/delete?id=${params}`);
 export const queryallConsumer = () => get(`consumer/findall`);
 //根据用户名来模糊
 export const queryConsumerByName = (params) => get(`consumer/findbyusernamelike?username=${params}`);
-
-
+//登录
+export const login = (username,password) => get(`consumer/login?username=${username}&password=${password}`);
 //下载音乐
 export const download = (url)  => Axios({
   method: 'get',

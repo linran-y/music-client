@@ -284,6 +284,7 @@
 
       tolyric(){
         this.$router.push({path:'/lyric'});
+        this.$store.commit("setActiveName",'');
       },
       parseLyric(text){
         let lines = text.split("\n");                   //将歌词按行分解成数组

@@ -8,8 +8,13 @@ import Search from '@/pages/Search'
 import Lyric from '../pages/Lyric'
 import LoginIn from '../pages/LoginIn'
 import SignUp from '../pages/SignUp'
+import Setting from '../pages/Setting'
 Vue.use(Router)
 
+const VueRouterPush = Router.prototype.push
+Router.prototype.push = function push (to) {
+  return VueRouterPush.call(this, to).catch(err => err)
+}
 export default new Router({
   routes: [
     {
@@ -51,6 +56,11 @@ export default new Router({
       path: '/login-in',
       name: 'login-in',
       component: LoginIn
+    },
+    {
+      path: '/setting',
+      name: 'setting',
+      component: Setting
     }
 
   ],
