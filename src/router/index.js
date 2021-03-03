@@ -9,6 +9,8 @@ import Lyric from '../pages/Lyric'
 import LoginIn from '../pages/LoginIn'
 import SignUp from '../pages/SignUp'
 import Setting from '../pages/Setting'
+import SingerAlbum from '../pages/SingerAlbum'
+import SongListAlbum from '../pages/SongListAlbum'
 Vue.use(Router)
 
 const VueRouterPush = Router.prototype.push
@@ -61,6 +63,17 @@ export default new Router({
       path: '/setting',
       name: 'setting',
       component: Setting
+    }
+    ,
+    {
+      path: '/singer-album',
+      name: 'singer-album',
+      component: SingerAlbum
+    },
+    {
+      path: '/song-list-album',
+      name: 'song-list-album',
+      component: SongListAlbum
     }
 
   ],

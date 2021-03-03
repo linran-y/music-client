@@ -110,10 +110,11 @@ const song = {
       return lyric;
     },
     tempList: state => {
-      let tempList = state.tempList;
+      let tempList = JSON.parse(window.sessionStorage.getItem('tempList')||null);
       if(!tempList){
-        tempList = JSON.parse(window.sessionStorage.getItem('tempList')||null);
+        tempList = state.tempList;
       }
+     // console.log(tempList);
       return tempList;
     },
     listIndex: state => {
@@ -190,6 +191,7 @@ const song = {
     setTempList: (state,tempList) => {
       state.tempList = tempList;
       window.sessionStorage.setItem('tempList',JSON.stringify(tempList));
+      //console.log(tempList);
     },
     setListIndex: (state,listIndex) => {
       state.listIndex = listIndex;

@@ -73,3 +73,8 @@ export const download = (url)  => Axios({
   url: url,
   responseType: 'blob'
 });
+//========================歌单评价相关=======================
+//新增评价
+export const setScore = (params) => post(`rank/addscore`,params);
+//查询歌单评价
+export const getScore = (params) => get(`rank/getscore?songlistid=${params}`);
